@@ -1,0 +1,20 @@
+"echo": {
+		
+		"prefix": ["/"],
+		"body": "<?= $1; ?>"  
+	  },
+
+	"short8":{
+		"prefix": ["ph"],
+		"body": ["<?php $1 ?>" ]
+	},
+
+	"Header":{
+		"prefix": ["h"],
+		"body": ["<?php include(VIEWS . '_partials/header.php'); ?>" ]
+	},
+
+	"footer":{
+		"prefix": ["f"],
+		"body": ["<?php include(VIEWS . '_partials/footer.php'); ?>" ]
+	},
