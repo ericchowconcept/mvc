@@ -26,6 +26,8 @@ const BASE= CONFIG['app']['projectBaseUrl'] . '/public/index.php/';
 const UPLOAD = CONFIG['app']['projectBaseUrl'] . '/public/upload/';
 // constantes à appeler dans le php
 const PUBLIC_FOLDER = BASE_DIR . 'public\\';
+//* pour mac const PUBLIC_FOLDER = BASE_DIR . 'public' . DIRECTORY_SEPARATOR;
+
 const VIEWS = BASE_DIR . 'views/';
 const MODELS = BASE_DIR . 'src/models/';
 const CONTROLLERS = BASE_DIR . 'src/controllers/';

@@ -1,8 +1,15 @@
 <?php include(VIEWS . '_partials/header.php'); ?>
 
+<?php 
+var_dump($_POST);
+echo '<br>';
+var_dump($_FILES);
+?>
+
 <h1 class="text-center text-primary text-uppercase mt-3">Ajout Produit</h1>
 <div class="container mt-4"> 
-    <form>
+    <form method="post" enctype="multipart/form-data">
+        <!-- enctype="multipart/form-data" pour stocker different les info du fichier -->
         <fieldset> 
             <div class="form-group">
                 <label for="nom" class="form-label mt-4">Nom</label>
