@@ -70,10 +70,64 @@ class AppController
         include(VIEWS . 'app/ajoutProduit.php');
     }
 
+    public static function modifierProduit()
+    {   
+        // *ici on vérifie que notre GET['id'] n'est pasd vide afin de récuperer notre produit
+        if(!empty($_GET['id']))
+        {
+            // *je récupère mon produit grace à son id
+            $produit = Produit::findById(['id_produit' => $_GET['id']]);
+        }
+        // *si l'utilisateur a cliqué sur modifier alors je rentre dans les accolades
+        if(!empty($_POST))
+        {
+            // *création d'un tableau d'erreur vide
+            $error =[];
+            foreach($_POST as $indice=>$valeur)
+            {
+                if(empty($valeur))
+                {
+                    $error[$indice] = "le champ est obligatoire";
+                }
+                if(!$error)
+                {
+                    if((!empty($_FILES['image']['name'])) && 
+                    $_FILES['image']['size'] < 3000000 && 
+                ($_FILES['image']['type'] == 'image/jpeg' ||
+                $_FILES['image']['type'] == 'image/png' ||
+                $_FILES['image']['type'] == 'image/gif' ||
+                $_FILES['image']['type'] == 'image/webp'))
+                {
+                    $nomImage = date('dmYhis') . $_FILES['image']['name'];
+                    unlink(PUBLIC_FOLDER . 'upload' . DIRECTORY_SEPARATOR . $_POST['ancienneImg']);
+
+                    copy($_FILES['image']['tmp_name'], PUBLIC_FOLDER . 'upload' . DIRECTORY_SEPARATOR . $nomImage);
+                }else{
+                    $nomImage = $_POST['ancienneImg'];
+                }
+                Produit::update([
+                    'nom' => $_POST['nom'],
+                    'categorie'=> $_POST['categorie'],
+                    'image'=>$nomImage,
+                    'description'=>$_POST['description'],
+                    'prix'=>$_POST['prix'],
+                    'id_produit'=>$_GET['id']                
+                ]);
+
+                header('location:' . BASE . 'produit/gestion');
+                exit();
+                }
+            }
+        }
+        include(VIEWS . 'app/modifierProduit.php');
+    }
+
     public static function gestionProduit()
     {
+        
         $produits = Produit::findAll();
         include(VIEWS . 'app/gestionProduit.php');
+   
     }
 
 }

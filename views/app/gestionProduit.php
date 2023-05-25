@@ -2,9 +2,9 @@
 
 
 <?php
-echo'<pre>';
-print_r($produits);
-echo'</pre>';
+// echo'<pre>';
+// print_r($produits);
+// echo'</pre>';
 ?>
 
 <h1 class="text-center m-3">Gestion Produit</h1>
@@ -32,13 +32,14 @@ echo'</pre>';
                 width="50px"></td>
                 <td><?= $produit['prix'] . ' €'; ?></td>
                 <td>
-                    <a href=""><i class="bi bi-eye"></i></a>
-                    <a href=""><i class="bi bi-pencil-square text-info"></i></a>
+                    <a href=""><i class="bi bi-eye text-info"></i></a>
+
+                    <a href="<?= BASE . 'produit/modifier?id=' . $produit['id_produit']; ?>"><i class="bi bi-pencil-square text-primary mx-1"></i></a>
+
                     <a href=""><i class="bi bi-trash3 text-warning"></i></a>
                 </td>
                 <?php endforeach; ?>
                 </tr>
-
             </tbody>
         </table>
     </div>

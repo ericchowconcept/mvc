@@ -40,7 +40,8 @@ $routes = [
     ''                  => ['AppController', 'index'],
     '/'                 => ['AppController', 'index'],
     '/produit/ajout'    => ['AppController', 'ajoutProduit'],
-    '/produit/gestion'    => ['AppController', 'gestionProduit']
+    '/produit/gestion'    => ['AppController', 'gestionProduit'],
+    '/produit/modifier'    => ['AppController', 'modifierProduit']
 
    
     

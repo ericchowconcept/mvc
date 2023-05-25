@@ -29,7 +29,7 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="<?= BASE . 'produit/ajout'; ?>">Ajouter Produit</a>
                 <a class="dropdown-item" href="<?= BASE . 'produit/gestion'; ?>">Gestion Produit</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="<?= BASE . 'produit/modifier'; ?>">Modifier Produit</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Separated link</a>
             </div>
