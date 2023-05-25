@@ -11,5 +11,15 @@ class Produit extends Db
         $response->execute($data);
         return $pdo->lastInsertId();
     }
+
+    public static function findAll()
+    {
+        $request = "SELECT * FROM produit";
+        $response = self::getDb()->prepare($request);
+        $response->execute();
+        
+
+        return $response->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 

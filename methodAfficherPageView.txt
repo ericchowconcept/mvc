@@ -1,0 +1,14 @@
+Les 3 étapes minimums pour afficher une page de vue :
+
+1ère étape : Créer notre fichier de vue dans le dossier Views (app ici)
+                et inclure le header et le footer dedans (et au millieu un titre)
+
+2eme étape :  Créer une méthode (static) dans un controller qui va inclure mon fichier de vue que je viens de créer 
+
+3ème étape : modifier mon tableau de route dans params. Il faut ajouter une nouvelle route qui a pour valeur le controlleur utilisé et la méthode utilisée.
+Taper dans l'url le nouveau chemin pour afficher  ma nouvelle vue.
+
+4ème étape : créer un lien dans la barre de nav qui ramenerai à ce lien. car pas accessible via le localhost.
+
+
+Le controller relie les view et models.

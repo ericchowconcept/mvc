@@ -5,7 +5,7 @@ class AppController
 
     public static function index()
     {
-      
+        $produits = Produit::findAll();
         include(VIEWS . 'app/index.php');
     }
 
@@ -59,12 +59,21 @@ class AppController
                     ];
                     // *on utilise la méthode ajouter (static) de la classe Produit afin d'envoyer mes données en BDD
                     Produit::ajouter($data);
+
+                    header('location:' . BASE);
+                    exit();
                 }
             }
 
         }
         
         include(VIEWS . 'app/ajoutProduit.php');
+    }
+
+    public static function gestionProduit()
+    {
+        $produits = Produit::findAll();
+        include(VIEWS . 'app/gestionProduit.php');
     }
 
 }
