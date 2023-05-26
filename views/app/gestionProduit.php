@@ -24,6 +24,26 @@
             </thead>
             <tbody>
                 <?php foreach ($produits as $produit): ?>
+                    <div class="modal fade" role="dialog" tabindex="-1"  aria-hidden= "true" id="modalSupprimer" >
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Supprimer Produit</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes vous sur de vouloir supprimer?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="<?= BASE . 'produit/supprimer?id=' . $produit['id_produit']; ?>" class="btn btn-danger">Supprimer</a>
+
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
                 <tr class="table-light">
                     <th scope="row"><?= $produit['id_produit']; ?></th>
                     <td><?= $produit['nom']; ?></td>
@@ -36,7 +56,7 @@
 
                         <a href="<?= BASE . 'produit/modifier?id=' . $produit['id_produit']; ?>"><i class="bi bi-pencil-square text-primary mx-1"></i></a>
 
-                        <a onclick="return confirm('Êtes-vous sur de vouloir supprimer le produit?')" href="<?= BASE . 'produit/supprimer?id=' . $produit['id_produit']; ?>"><i class="bi bi-trash3 text-warning"></i></a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalSupprimer" href="" class="text-danger"><i class="bi bi-trash3"></i></a>
                     </td>
                 <?php endforeach; ?>
                 </tr>

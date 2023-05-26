@@ -34,8 +34,12 @@ echo'</pre>';
             </div>
             <div class="form-group">
                 <label for="image" class="form-label mt-4">Image</label>
-                <input class="form-control" type="file" name="image" id="image">
+                <input class="form-control" onchange="loadFile(event)" type="file" name="image" id="image">
                 <small class="text-danger"><?= $error['ancienneImg'] ?? ""; ?></small>
+
+                <img src="<?= UPLOAD . $produit['image']; ?>" width="300" alt="">
+
+                <img id="photo" width="300" alt="">
             </div>
             <div class="form-group">
                 <label for="description" class="form-label mt-4">Description</label>
@@ -53,6 +57,15 @@ echo'</pre>';
     </form> 
 </div> 
 
+<script>
+    let loadFile = function(event)
+    {
+        let image = document.getElementById('photo');
+
+        image.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+</script>
 
 
 
