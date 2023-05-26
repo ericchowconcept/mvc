@@ -25,21 +25,30 @@
             <tbody>
                 <?php foreach ($produits as $produit): ?>
                 <tr class="table-light">
-                <th scope="row"><?= $produit['id_produit']; ?></th>
-                <td><?= $produit['nom']; ?></td>
-                <td><?= $produit['categorie']; ?></td>
-                <td><img src="<?= UPLOAD . $produit['image']; ?>" alt="" 
-                width="50px"></td>
-                <td><?= $produit['prix'] . ' €'; ?></td>
-                <td>
-                    <a href=""><i class="bi bi-eye text-info"></i></a>
+                    <th scope="row"><?= $produit['id_produit']; ?></th>
+                    <td><?= $produit['nom']; ?></td>
+                    <td><?= $produit['categorie']; ?></td>
+                    <td><img src="<?= UPLOAD . $produit['image']; ?>" alt="" 
+                    width="50px"></td>
+                    <td><?= $produit['prix'] . ' €'; ?></td>
+                    <td>
+                        <a href="<?= BASE . 'produit/voir?id=' . $produit['id_produit']; ?>"><i class="bi bi-eye text-info"></i></a>
 
-                    <a href="<?= BASE . 'produit/modifier?id=' . $produit['id_produit']; ?>"><i class="bi bi-pencil-square text-primary mx-1"></i></a>
+                        <a href="<?= BASE . 'produit/modifier?id=' . $produit['id_produit']; ?>"><i class="bi bi-pencil-square text-primary mx-1"></i></a>
 
-                    <a href="<?= BASE . 'produit/supprimer?id=' . $produit['id_produit']; ?>"><i class="bi bi-trash3 text-warning"></i></a>
-                </td>
+                        <a onclick="return confirm('Êtes-vous sur de vouloir supprimer le produit?')" href="<?= BASE . 'produit/supprimer?id=' . $produit['id_produit']; ?>"><i class="bi bi-trash3 text-warning"></i></a>
+                    </td>
                 <?php endforeach; ?>
                 </tr>
+                <tr>
+                    <td colspan="6">
+                        <a class="dropdown-item" href="<?= BASE . 'produit/ajout'; ?>">
+                        <button type="submit" class="btn btn-light col-12"><i class="bi bi-plus-circle-dotted"></i></button> 
+                        </a> 
+                    </td>
+                </tr>
+              
+
             </tbody>
         </table>
     </div>

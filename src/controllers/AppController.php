@@ -60,6 +60,8 @@ class AppController
                     // *on utilise la méthode ajouter (static) de la classe Produit afin d'envoyer mes données en BDD
                     Produit::ajouter($data);
 
+                    $_SESSION['messages']['success'][]='Le produit a bien été ajouté';
+
                     header('location:' . BASE);
                     exit();
                 }
@@ -143,13 +145,27 @@ class AppController
 
     public static function supprimerProduit()
     {
-        if(isset($_GET['id'])){
+        if(!empty($_GET['id'])){
            $deleteProduit = Produit::deleteById(['id_produit' => $_GET['id']]);  
+
+           $_SESSION['messages']['success'][]='Le produit a bien été supprimé';
         }
 
        header('location:' . BASE . 'produit/gestion');
        exit();
 
+    }
+
+    public static function voirProduit()
+    {
+        if(!empty($_GET['id']))
+        {
+           $produit = Produit::findById(['id_produit' => intval( $_GET['id'])]); 
+        // * intval pour indiquer qu'on veut un INT car normalement $_GET['id'] nous retourne un string
+        }
+        
+        
+        include(VIEWS . 'app/voirProduit.php');
     }
 
 }
