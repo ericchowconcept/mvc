@@ -37,5 +37,12 @@ class Produit extends Db
         $response = self::getDb()->prepare($request);
         return $response->execute($data);
     }
+
+    public static function deleteById(array $id)
+    {
+        $request = "DELETE FROM produit WHERE id_produit=:id_produit";
+        $response = self::getDb()->prepare($request);
+        return $response->execute($id);
+    }
 }
 

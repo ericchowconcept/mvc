@@ -77,6 +77,10 @@ class AppController
         {
             // *je récupère mon produit grace à son id
             $produit = Produit::findById(['id_produit' => $_GET['id']]);
+        }else
+        {
+            header('location:' . BASE . 'produit/gestion');
+            exit();
         }
         // *si l'utilisateur a cliqué sur modifier alors je rentre dans les accolades
         if(!empty($_POST))
@@ -88,9 +92,11 @@ class AppController
                 if(empty($valeur))
                 {
                     $error[$indice] = "le champ est obligatoire";
-                }
+                }}
+                // *s'il y a pas d'erreur, on fait notre traitement
                 if(!$error)
                 {
+                    // *verifier s'il y a une nouvelle image dans l'input type file avec le bon poid et bon type
                     if((!empty($_FILES['image']['name'])) && 
                     $_FILES['image']['size'] < 3000000 && 
                 ($_FILES['image']['type'] == 'image/jpeg' ||
@@ -98,13 +104,17 @@ class AppController
                 $_FILES['image']['type'] == 'image/gif' ||
                 $_FILES['image']['type'] == 'image/webp'))
                 {
+                    // *on créé un nouveau nom d'image pour la nouvelle image, 
                     $nomImage = date('dmYhis') . $_FILES['image']['name'];
+                    // *on supprime l'ancienne image.
                     unlink(PUBLIC_FOLDER . 'upload' . DIRECTORY_SEPARATOR . $_POST['ancienneImg']);
-
+                    // *on stocke la nouvelle image
                     copy($_FILES['image']['tmp_name'], PUBLIC_FOLDER . 'upload' . DIRECTORY_SEPARATOR . $nomImage);
                 }else{
+                    // *s'il n y pas nouvelle image, on stocke dans la variable $nomImage, le nom de l'ancienne image
                     $nomImage = $_POST['ancienneImg'];
                 }
+                // *on procède à la modification en BDD de notre produit
                 Produit::update([
                     'nom' => $_POST['nom'],
                     'categorie'=> $_POST['categorie'],
@@ -113,11 +123,12 @@ class AppController
                     'prix'=>$_POST['prix'],
                     'id_produit'=>$_GET['id']                
                 ]);
+                $_SESSION['messages']['success'][]='Le produit a bien été modifié';
 
                 header('location:' . BASE . 'produit/gestion');
                 exit();
                 }
-            }
+            
         }
         include(VIEWS . 'app/modifierProduit.php');
     }
@@ -128,6 +139,17 @@ class AppController
         $produits = Produit::findAll();
         include(VIEWS . 'app/gestionProduit.php');
    
+    }
+
+    public static function supprimerProduit()
+    {
+        if(isset($_GET['id'])){
+           $deleteProduit = Produit::deleteById(['id_produit' => $_GET['id']]);  
+        }
+
+       header('location:' . BASE . 'produit/gestion');
+       exit();
+
     }
 
 }

@@ -36,7 +36,7 @@
 
                     <a href="<?= BASE . 'produit/modifier?id=' . $produit['id_produit']; ?>"><i class="bi bi-pencil-square text-primary mx-1"></i></a>
 
-                    <a href=""><i class="bi bi-trash3 text-warning"></i></a>
+                    <a href="<?= BASE . 'produit/supprimer?id=' . $produit['id_produit']; ?>"><i class="bi bi-trash3 text-warning"></i></a>
                 </td>
                 <?php endforeach; ?>
                 </tr>
