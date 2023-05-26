@@ -1,1 +1,1 @@
-# MVC day 1
+# MVC day 1 & day 2
